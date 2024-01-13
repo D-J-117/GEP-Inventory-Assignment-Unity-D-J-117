@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public InventoryObject inventory;
+
+    public void OnTriggerEnter(Collider other)
     {
-        
+        var item = other.GetComponent<Item>();
+        if(item)
+        {
+            inventory.AddItem(item.item, 1);
+            Destroy(other.gameObject);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnApplicationQuit()
     {
-        
+        inventory.container.Clear();
     }
+
 
     void OnCollisionEnter(Collision collision)
     {
