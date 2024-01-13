@@ -104,6 +104,9 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
+        private bool inventoryOpen = false;
+
+
         private bool IsCurrentDeviceMouse
         {
             get
@@ -141,6 +144,19 @@ namespace StarterAssets
         private void Update()
         {
             _hasAnimator = TryGetComponent(out _animator);
+            if (_input.inventoryToggle)
+            {
+                inventoryOpen = !inventoryOpen;
+
+                if (inventoryOpen)
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                }
+                else
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                }
+            }
 
             JumpAndGravity();
             GroundedCheck();
@@ -149,7 +165,12 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
-            CameraRotation();
+            if (!inventoryOpen)
+            {
+                CameraRotation();
+            }
+            _input.inventoryToggle = false;
+
         }
 
         private void AssignAnimationIDs()
