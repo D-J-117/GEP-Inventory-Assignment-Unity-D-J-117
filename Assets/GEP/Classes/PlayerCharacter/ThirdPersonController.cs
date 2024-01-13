@@ -71,6 +71,9 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
+        [Header("Inventory")]
+        public GameObject inventory;
+
         // cinemachine
         private float _cinemachineTargetYaw;
         private float _cinemachineTargetPitch;
@@ -139,6 +142,8 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            inventory.SetActive(false);
         }
 
         private void Update()
@@ -150,10 +155,12 @@ namespace StarterAssets
 
                 if (inventoryOpen)
                 {
+                    inventory.SetActive(true);
                     Cursor.lockState = CursorLockMode.None;
                 }
                 else
                 {
+                    inventory.SetActive(false);
                     Cursor.lockState = CursorLockMode.Locked;
                 }
             }
