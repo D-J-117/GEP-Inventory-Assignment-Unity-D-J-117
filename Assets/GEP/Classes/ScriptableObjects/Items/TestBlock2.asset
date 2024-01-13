@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6790aeab35f3d5d45a99d68e37cba904, type: 3}
   m_Name: TestBlock2
   m_EditorClassIdentifier: 
-  prefab: {fileID: 0}
+  prefab: {fileID: 4782875308038798491, guid: db046ae6a987dbd4c9e6c700f2d5e1ce, type: 3}
   type: 0
-  description: 
+  description: 'Test block
+
+    Different Icon to other test block
+
+'
