@@ -8,17 +8,23 @@ public class PlayerInteraction : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
-        var item = other.GetComponent<Item>();
-        if(item)
+        var item = other.GetComponent<GroundItem>();
+        if(item != null)
         {
-            inventory.AddItem(item.item, 1);
+            inventory.AddItem(new Item(item.item), 1);
             Destroy(other.gameObject);
         }
     }
 
+    public void OnDropItem()
+    {
+        inventory.RemoveItem();
+        Debug.Log("HI");
+    }
+
     private void OnApplicationQuit()
     {
-        inventory.container.Clear();
+        inventory.container.Items.Clear();
     }
 
 

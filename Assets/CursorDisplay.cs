@@ -42,7 +42,7 @@ public class CursorDisplay : MonoBehaviour
         {
             //Debug.Log(results[0].gameObject.name); //The UI Element
             Debug.Log(results[0].gameObject.transform.parent.name);
-            //transform.position = results[0].gameObject.transform.parent.transform.position;
+            
 
         }
 

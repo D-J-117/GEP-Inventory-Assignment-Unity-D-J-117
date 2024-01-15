@@ -6,15 +6,37 @@ using UnityEngine;
 // depending on the type of game it is used in
 public enum ItemType
 {
-    Default
+    Default,
+    Block
+
 }
 
 // Base class
 public abstract class ItemObject : ScriptableObject
 {
-    public GameObject prefab;
+    public int ID;
+    public Sprite uiDisplay;
     public ItemType type;
     [TextArea(15,20)]
     public string description;
 
+    public Item CreateItem()
+    {
+        Item newItem = new Item(this);
+        return newItem;
+    }
+
 }
+
+[System.Serializable]
+public class Item
+{
+    public string Name;
+    public int ID;
+    public Item(ItemObject item)
+    {
+        Name = item.name;
+        ID = item.ID;
+    }
+}
+

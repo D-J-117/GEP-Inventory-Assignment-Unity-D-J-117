@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6790aeab35f3d5d45a99d68e37cba904, type: 3}
   m_Name: TestBlock
   m_EditorClassIdentifier: 
-  prefab: {fileID: 6570941268869388528, guid: 904945c863edf92469d0ce94ce654053, type: 3}
+  ID: 1
+  uiDisplay: {fileID: 21300000, guid: 89e90bdd43a0dfa4082422e54cf2a0b9, type: 3}
   type: 0
   description: 'Test Item
 
