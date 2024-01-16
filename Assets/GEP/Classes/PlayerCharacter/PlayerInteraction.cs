@@ -24,10 +24,10 @@ public class PlayerInteraction : MonoBehaviour
             if (inventory.container[inventory.container.Count - 1].amount > 0)
             {
                 GameObject temp;
-                temp = Instantiate(inventory.container[inventory.container.Count - 1].item.itemPrefab, transform.forward, Quaternion.identity, transform);
+                temp = Instantiate(inventory.container[inventory.container.Count - 1].item.itemPrefab, Vector3.zero, Quaternion.identity, transform);
                 temp.transform.SetParent(null);
+                temp.transform.position = transform.position + new Vector3(transform.forward.x * 4,transform.forward.y * 10,transform.forward.z * 4);
                 inventory.RemoveItem();
-
             }
             
         }
