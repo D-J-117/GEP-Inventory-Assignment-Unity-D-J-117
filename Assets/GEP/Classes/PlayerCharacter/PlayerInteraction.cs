@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -14,6 +15,17 @@ public class PlayerInteraction : MonoBehaviour
             inventory.AddItem(item.item, 1);
             Destroy(other.gameObject);
         }
+    }
+
+    public void OnDropItem()
+    {
+        if (inventory.container.Count > 0)
+        {
+            GameObject temp = inventory.container[inventory.container.Count - 1].item.prefab;
+            temp.transform.position = Vector3.zero;
+            inventory.RemoveItem();
+        }
+
     }
 
     private void OnApplicationQuit()

@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.PackageManager.Requests;
@@ -7,6 +8,7 @@ using UnityEngine;
 public class InventoryObject : ScriptableObject
 {
     public List<InventorySlot> container = new List<InventorySlot>();
+    //public var inventoryDisplay;
 
     public void AddItem (ItemObject _item, int _amount)
     {
@@ -23,8 +25,38 @@ public class InventoryObject : ScriptableObject
         if (!hasItem)
         {
             container.Add(new InventorySlot(_item, _amount));
+               
+        }
+
+        
+    }
+
+    public void RemoveItem()
+    {
+        int index = container.Count-1;
+        if (index > -1)
+        {
+            container[index].AddAmount(-1);
+            //if (container[index].amount <= 0)
+            //{
+            //    inventoryDisplay.GetComponentInChildren<DisplayInventory>().RemoveItem(container[index]);
+            //    container.RemoveAt(index);
+            //}
+            
         }
     }
+
+    public void DeleteEmptyItems()
+    {
+        for (int i = 0; i < container.Count; i++)
+        {
+            if (container[i].amount <= 0)
+            {
+                container.RemoveAt(i);
+            }
+        }
+    }
+
 }
 
 
@@ -43,4 +75,14 @@ public class InventorySlot
     {
         amount += value;
     }
+
+    public void MinusAmount(int value)
+    {
+        amount -= value;
+        if (amount <= 0)
+        {
+
+        }
+    }
 }
+

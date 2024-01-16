@@ -14,7 +14,7 @@ public class DisplayInventory : MonoBehaviour
     public int X_SPACE_BETWEEN_ITEM;
     public int NUMBER_OF_COLUMN;
     public int Y_SPACE_BETWEEN_ITEM;
-    Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
+    public Dictionary<InventorySlot, GameObject> itemsDisplayed = new Dictionary<InventorySlot, GameObject>();
 
     private void Start()
     {
@@ -44,8 +44,18 @@ public class DisplayInventory : MonoBehaviour
         {
             if (itemsDisplayed.ContainsKey(inventory.container[i]))
             {
-                itemsDisplayed[inventory.container[i]].GetComponentInChildren<TextMeshProUGUI>().text = inventory.container[i].amount.ToString("n0");
+                if (inventory.container[i].amount > 0)
+                {
+                    itemsDisplayed[inventory.container[i]].GetComponentInChildren<TextMeshProUGUI>().text = inventory.container[i].amount.ToString("n0");
+                }
+                else
+                {
+                    Destroy(itemsDisplayed[inventory.container[i]]);
+                    itemsDisplayed.Remove(inventory.container[i]);
+                    inventory.DeleteEmptyItems();
+                }
             }
+                
             else
             {
                 var obj = Instantiate(inventory.container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
@@ -62,6 +72,13 @@ public class DisplayInventory : MonoBehaviour
         // Place object within a grid
         return new Vector3(X_START + (X_SPACE_BETWEEN_ITEM * (index % NUMBER_OF_COLUMN)), Y_START + (-Y_SPACE_BETWEEN_ITEM * (index / NUMBER_OF_COLUMN)), 0f);
     }
-
+    
+    public void RemoveItem(InventorySlot slot)
+    {
+        if (itemsDisplayed.ContainsKey(slot))
+        {
+            itemsDisplayed.Remove(slot);
+        }
+    }
 
 }
