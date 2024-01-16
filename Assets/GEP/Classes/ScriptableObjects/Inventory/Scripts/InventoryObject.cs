@@ -33,10 +33,9 @@ public class InventoryObject : ScriptableObject
 
     public void RemoveItem()
     {
-        int index = container.Count-1;
-        if (index > -1)
+        if (container.Count > 0)
         {
-            container[index].AddAmount(-1);
+            container[container.Count-1].AddAmount(-1);
             //if (container[index].amount <= 0)
             //{
             //    inventoryDisplay.GetComponentInChildren<DisplayInventory>().RemoveItem(container[index]);
@@ -48,13 +47,14 @@ public class InventoryObject : ScriptableObject
 
     public void DeleteEmptyItems()
     {
-        for (int i = 0; i < container.Count; i++)
-        {
-            if (container[i].amount <= 0)
-            {
-                container.RemoveAt(i);
-            }
-        }
+        container.RemoveAt(container.Count - 1);
+        //for (int i = 0; i < container.Count; i++)
+        //{
+        //    if (container[i].amount <= 0)
+        //    {
+        //        container.RemoveAt(i);
+        //    }
+        //}
     }
 
 }

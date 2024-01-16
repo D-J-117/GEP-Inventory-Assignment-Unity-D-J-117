@@ -21,10 +21,15 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (inventory.container.Count > 0)
         {
-            GameObject temp;
-            temp = Instantiate(inventory.container[inventory.container.Count - 1].item.itemPrefab, Vector3.zero, Quaternion.identity, transform);
-            temp.transform.SetParent(null);
-            inventory.RemoveItem();
+            if (inventory.container[inventory.container.Count - 1].amount > 0)
+            {
+                GameObject temp;
+                temp = Instantiate(inventory.container[inventory.container.Count - 1].item.itemPrefab, transform.forward, Quaternion.identity, transform);
+                temp.transform.SetParent(null);
+                inventory.RemoveItem();
+
+            }
+            
         }
 
     }

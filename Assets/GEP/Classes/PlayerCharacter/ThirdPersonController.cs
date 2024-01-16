@@ -73,6 +73,7 @@ namespace StarterAssets
 
         [Header("Inventory")]
         public GameObject inventory;
+        public bool AlwaysDisplayInventory = false;
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -143,7 +144,7 @@ namespace StarterAssets
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
 
-            inventory.SetActive(false);
+            inventory.SetActive(AlwaysDisplayInventory);
         }
 
         private void Update()
@@ -155,12 +156,18 @@ namespace StarterAssets
 
                 if (inventoryOpen)
                 {
-                    inventory.SetActive(true);
+                    if(!AlwaysDisplayInventory)
+                    {
+                        inventory.SetActive(true);
+                    }
                     Cursor.lockState = CursorLockMode.None;
                 }
                 else
                 {
-                    inventory.SetActive(false);
+                    if (!AlwaysDisplayInventory)
+                    {
+                        inventory.SetActive(false);
+                    }
                     Cursor.lockState = CursorLockMode.Locked;
                 }
             }

@@ -44,6 +44,7 @@ public class DisplayInventory : MonoBehaviour
         {
             if (itemsDisplayed.ContainsKey(inventory.container[i]))
             {
+                //Debug.Log(i.ToString() + "," + inventory.container[i].amount.ToString());
                 if (inventory.container[i].amount > 0)
                 {
                     itemsDisplayed[inventory.container[i]].GetComponentInChildren<TextMeshProUGUI>().text = inventory.container[i].amount.ToString("n0");
