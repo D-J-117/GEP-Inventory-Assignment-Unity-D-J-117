@@ -31,7 +31,7 @@ public class DisplayInventory : MonoBehaviour
         for (int i = 0; i < inventory.container.Count; i++)
         {
             //Set position, rotation
-            var obj = Instantiate(inventory.container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
+            var obj = Instantiate(inventory.container[i].item.displayPrefab, Vector3.zero, Quaternion.identity, transform);
             obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
             obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.container[i].amount.ToString("n0");
             itemsDisplayed.Add(inventory.container[i], obj);
@@ -58,7 +58,7 @@ public class DisplayInventory : MonoBehaviour
                 
             else
             {
-                var obj = Instantiate(inventory.container[i].item.prefab, Vector3.zero, Quaternion.identity, transform);
+                var obj = Instantiate(inventory.container[i].item.displayPrefab, Vector3.zero, Quaternion.identity, transform);
                 obj.GetComponent<RectTransform>().localPosition = GetPosition(i);
                 obj.GetComponentInChildren<TextMeshProUGUI>().text = inventory.container[i].amount.ToString("n0");
                 itemsDisplayed.Add(inventory.container[i], obj);
