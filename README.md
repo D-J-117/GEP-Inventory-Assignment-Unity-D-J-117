@@ -7,3 +7,5 @@ K - Drop most recent item.
 On PlayerCharacter, under the script ThirdPersonController, there is a bool named AlwaysDisplayInventory.
 Set to True to always display inventory, set to False to hide inventory until you open it.
 
+The item display will display the information of the first item stored in the inventory. 
+
